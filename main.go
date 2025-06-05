@@ -42,7 +42,10 @@ func main() {
 		fmt.Printf("gagal membaca input: %s \n", err)
 		os.Exit(0)
 	}
-	fmt.Println(mapping)
+	if err := validatetype(mapping); err != nil {
+		fmt.Printf("gagal memvalidasi tipe data: %s \n", err)
+		os.Exit(0)
+	}
 
 	// if inputPath == "" {
 	// 	fmt.Println("input wajib diisi")
@@ -116,4 +119,20 @@ func readInput(path string, mapping *map[string]string) error {
 
 	return nil
 
+}
+
+func validatetype(mapping map[string]string) error {
+	supported := map[string]bool{
+		"name":   true,
+		"addres": true,
+		"date":   true,
+		"phone":  true,
+	}
+	for _, value := range mapping {
+		if !supported[value] {
+			return errors.New("Tipe data tidak didukung")
+		}
+	}
+
+	return nil
 }
