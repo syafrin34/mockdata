@@ -1,7 +1,7 @@
 {
     "nama" : "name",
     "tanggalLahir" : "date",
-    "alamat" : "adress",
+    "alamat" : "address",
     "telepon" : "phone"
     
 }
